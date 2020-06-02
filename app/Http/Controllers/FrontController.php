@@ -8,5 +8,7 @@ use App\Category;
 
 class FrontController extends Controller
 {
-    
+    public function index(int $id){
+        return Product::find($id);
+    }
 }

@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('products/{id}', function ($id) {
-    return App\Product::find($id);
-});
+// page index 
+Route::get('/', 'FrontController@index')->name('home');
+
+Route::get('product/{id}', 'FrontController@show')->name('show_product');
