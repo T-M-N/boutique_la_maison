@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Product;
-use App\Category;
+use Illuminate\Support\Str;
 
 class ProductTableSeeder extends Seeder
 {
@@ -27,6 +26,16 @@ class ProductTableSeeder extends Seeder
             $category->category()->associate($category);
 
             $category->save();
+
+            // Gestion des images on maitrise le nom de l'image pour éviter les problèmes d'injection de script dans les noms 
+            // des fichiers.
+            $link = Str::random(40) . '.jpg';
+            // on récupère les octets d'une image distante avec file_get_content
+            $file = file_get_contents('./productImage/femmes' . rand(1, 10) . '/511/639');
+            $file = file_get_contents('./productImage/hommes' . rand(1, 10) . '/511/639');
+
+            // On enregistre les octets récupérés dans un fichier on utilise la classe de Laravel Storage
+            Storage::put($link, $file);
         });
     }
 }
