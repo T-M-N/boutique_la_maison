@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 // page index 
 Route::get('/', 'FrontController@index')->name('home');
 
+Route::get('category/{id}', 'FrontController@showCategory')->name('show_product_category');
+
+Route::get('solde', 'FrontController@showSolde')->name('show_product_solde');
 
 // http://127.0.0.1:8000/test
 // Route::get('test', function(){
