@@ -3,17 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use App\Category;
 
 class BookController extends Controller
 {
+    public function __construct(){
+        view()->composer('partials.menu', function($view){
+            $categories = Category::pluck('title', 'id');
+            $view->with('categories', $categories);
+        });
+    }
+
+     private $paginate = 10;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+ 
     public function index()
     {
-       return "Admin Book";
+    //    return "Admin Book";
+            $products = Product::paginate($this->paginate);
+            return view('back.product.index', ['products' => $products]);
     }
 
     /**

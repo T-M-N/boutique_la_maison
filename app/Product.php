@@ -13,6 +13,7 @@ class Product extends Model
         'size',
         'url_image',
         'status',
+        'genre',
         'code',
         'reference'
     ];
