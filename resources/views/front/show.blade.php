@@ -1,6 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
+<div class="row">
+        <div class="col-md-12">
+        @include('partials.menu')
+        </div>
+    </div>
 <br/>
 <article>
 <div class="col-md-12">    

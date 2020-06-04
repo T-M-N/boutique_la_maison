@@ -5,7 +5,7 @@ Page des products
 @endsection
 
 @section('content')
-<div class="row">
+ <div class="row">
         <div class="col-md-12">
         @include('partials.menu')
         </div>
@@ -37,6 +37,7 @@ Page des products
         @endif 
     
         <h2><a href="{{route('show_product', $product->id)}}">{{ $product->title }}</a></h2>
+        <p>{{'Code produit : '.$product->code}}</p>
         <p>{{$product->price}} &euro;</p>
 
     </li>

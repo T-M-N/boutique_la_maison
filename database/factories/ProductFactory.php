@@ -13,6 +13,6 @@ return [
         "size" => $faker->randomElement(['46', '48', '50', '52']), 
         'status' => $faker->randomElement(['published', 'unpublished']),
         'code' => $faker->randomElement(['solde', 'new']),
-        'reference' => $faker->ean8(),
+        'reference' => $faker->ean13(),
     ];
 });

@@ -14,6 +14,7 @@ class FrontController extends Controller
             $view->with('categories', $categories);
         });
     }
+    
 
     private $paginate = 6;
     private $paginateAuthor = 2;
@@ -42,5 +43,6 @@ class FrontController extends Controller
         $area = Product::with('category')->find($id); 
         return view('front.show', ['product' => $product, 'area' => $area], compact('size')); 
     }
+
 
 }

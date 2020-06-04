@@ -11,11 +11,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-        @include('partials.menu')
-        </div>
-    </div>
+   
     <div class="row">
     <div class="col-md-12">
         @yield('content')
@@ -74,6 +70,14 @@ nav h1{
 /* Description d'un produit */
 .description{
     margin-top:1em;
+}
+
+/* Formulaire input */
+.form{
+    margin-top:1em;
+}
+.form-control{
+    width:68%;
 }
 </style>
 

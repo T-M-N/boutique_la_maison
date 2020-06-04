@@ -6,7 +6,11 @@ Page des products
 
 @section('content')
 
-
+ <div class="row">
+        <div class="col-md-12">
+        @include('partials.menu')
+        </div>
+    </div>
 <div class="container">
 
 <div class="margin-top-1em col-md-8 offset-md-4 d-flex justify-content-around align-items-baseline">

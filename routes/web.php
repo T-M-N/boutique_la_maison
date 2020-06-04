@@ -22,8 +22,13 @@ Route::get('category/{id}', 'FrontController@showCategory')->name('show_product_
 
 Route::get('solde', 'FrontController@showSolde')->name('show_product_solde');
 
-// Route::resource('product', 'BookController')->middleware('auth');
-Route::resource('admin', 'BookController');
+Route::get('create', 'ProductController@create')->name('product.create');
+Route::get('edit', 'ProductController@edit')->name('product.edit');
+Route::get('update', 'ProductController@update')->name('product.update');
+// Route::resource('admin', 'BookController')->middleware('auth');
+
+Route::resource('admin', 'ProductController');
+
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');

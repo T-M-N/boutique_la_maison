@@ -2,7 +2,12 @@
 
 @section('content')
 
-<p><a href=""><button type="button" class="btn btn-primary btn-lg">Ajouter un livre</button></a></p>
+ <div class="row">
+        <div class="col-md-12">
+        @include('partials.admin')
+        </div>
+    </div>
+<p><a href="{{route('product.create')}}"><button type="button" class="btn btn-primary btn-lg">Ajouter un produit</button></a></p>
 {{$products->links()}}
 
 <table class="table table-striped">
@@ -35,25 +40,11 @@
                 @endif
             </td>
             <td>
-                <form class="delete" method="POST" action="">
-                    @method('DELETE')
-                    {{--
-                token de sécurité qui permet de sécuriser les formulaires 
-                si ce token n'est pas présent Laravel ne traitera pas le formulaire permet d'éviter les attaques csrf ou 
-                attaque par formulaire 
-                --}}
-                    @csrf
-                    <input class="btn btn-primary" type="submit" value="delete">
-                </form>
-            </td>
+             <a class="btn btn-primary" href="{{route('product.edit')}}">Edit</a></td>
+           </td>
              <td>
                 <form class="delete" method="POST" action="">
                     @method('DELETE')
-                    {{--
-                token de sécurité qui permet de sécuriser les formulaires 
-                si ce token n'est pas présent Laravel ne traitera pas le formulaire permet d'éviter les attaques csrf ou 
-                attaque par formulaire 
-                --}}
                     @csrf
                     <input class="btn btn-danger" type="submit" value="delete">
                 </form>

@@ -6,7 +6,11 @@ Page des products
 @endsection
 
 @section('content')
-
+<div class="row">
+        <div class="col-md-12">
+        @include('partials.menu')
+        </div>
+    </div>
 {{-- pagination de Laravel --}}
 {{ $products->links() }}
 
