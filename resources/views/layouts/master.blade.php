@@ -70,6 +70,11 @@ nav h1{
 .margin-top-1em{
     margin-top:1em;
 }
+
+/* Description d'un produit */
+.description{
+    margin-top:1em;
+}
 </style>
 
 </body>
