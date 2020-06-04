@@ -31,11 +31,18 @@ class FrontController extends Controller
         
     }
     
-     public function showCategory(int $id){
-        $category = Category::find($id) ;
-        $products = $category->with('products')->paginate( $this->paginateAuthor );
+     public function showCategory(int $category_id){
+        // $category = Category::find($id) ;
+        // $products = $category->with('products')->paginate( $this->paginateAuthor );
         
-        return view('front.genre', ['products' => $products]); 
+        // return view('front.genre', ['products' => $products]); 
+        $products = Product::with('category')->where('genre', $category_id)->paginate($this->paginate);
+        return view('front.index', ['products'=> $products]);
+    }
+
+     public function showProduct(int $id){
+        $product = Product::with('category')->find($id);        
+        return view('front.show', ['product' => $product]); 
     }
 
 }

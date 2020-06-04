@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 // page index 
 Route::get('/', 'FrontController@index')->name('home');
 
+Route::get('show/{id}', 'FrontController@showProduct')->name('show_product');
+
 Route::get('category/{id}', 'FrontController@showCategory')->name('show_product_category');
 
 Route::get('solde', 'FrontController@showSolde')->name('show_product_solde');

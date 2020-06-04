@@ -21,17 +21,21 @@ Page des products
   <div class="galery-product mx-auto">
     <div class="col-lg-12 col-md-6 col-sm-1">
     <ul>
-     @forelse($products as $product)
-    <li class="list-inline-item">
-    @if($product->genre == 'femme')
-    <img  src="{{asset('images/femmes/'.$product->url_image)}}" class="femme img-responsive img-thumbnail"/>
-         @else
-    <img  src="{{asset('images/hommes/'.$product->url_image)}}" class="homme img-responsive img-thumbnail"/>
+
+ @forelse($products as $product)
    
-     @endif 
-  
-     <h2>{{ $product->title }}</h2>
-     <p>{{$product->price}} &euro;</p>
+    <li class="list-inline-item">
+
+        @if($product->genre == 'femme')
+        <img  src="{{asset('images/femmes/'.$product->url_image)}}" class="femme img-responsive img-thumbnail"/>
+            @else
+        <img  src="{{asset('images/hommes/'.$product->url_image)}}" class="homme img-responsive img-thumbnail"/>
+    
+        @endif 
+    
+        <h2><a href="{{route('show_product', $product->id)}}">{{ $product->title }}</a></h2>
+        <p>{{$product->price}} &euro;</p>
+
     </li>
     
       @empty

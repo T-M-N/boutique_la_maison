@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->enum('code', ['solde', 'new'])->default('new');
             $table->string('reference', 100);
             $table->enum('status', ['published', 'unpublished', 'draft'])->default('unpublished');
-            $table->enum('genre', ['femme', 'homme'])->nullable();
+            $table->enum('genre', ['homme', 'femme'])->nullable();
             $table->foreignId('category_id')
                 ->nullable() 
                 ->constrained() 
