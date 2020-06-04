@@ -29,13 +29,14 @@
 <style>
 
 /* Galery product home */
+
 .galery-product ul{
-   margin:2.2em auto; 
    width: 960px;
+   margin:auto;
 }
 
 .galery-product li{
-        max-width: 30%;
+    max-width: 30%;
 }
 
 h2{
@@ -51,6 +52,7 @@ img.homme{
     margin-right: 1.5rem;
     margin-top: 1rem;
 }
+
 /* Navigation */
 nav h1{
     font-size: 1.5rem;
@@ -63,6 +65,10 @@ nav h1{
 /* Pagination */
 .pagination{
    justify-content: center;
+}
+
+.margin-top-1em{
+    margin-top:1em;
 }
 </style>
 

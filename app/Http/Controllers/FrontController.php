@@ -35,7 +35,7 @@ class FrontController extends Controller
         $category = Category::find($id) ;
         $products = $category->with('products')->paginate( $this->paginateAuthor );
         
-        return view('front.show', ['products' => $products]); 
+        return view('front.genre', ['products' => $products]); 
     }
 
 }
