@@ -13,11 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-// page index 
 Route::get('/', 'FrontController@index')->name('home');
 
 Route::get('show/{id}', 'FrontController@showProduct')->name('show_product');
@@ -26,7 +22,8 @@ Route::get('category/{id}', 'FrontController@showCategory')->name('show_product_
 
 Route::get('solde', 'FrontController@showSolde')->name('show_product_solde');
 
-// http://127.0.0.1:8000/test
-// Route::get('test', function(){
-//     return "je suis un test";
-// });
+// Route::resource('product', 'BookController')->middleware('auth');
+Route::resource('admin', 'BookController');
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
