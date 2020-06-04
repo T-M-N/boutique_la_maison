@@ -13,11 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // page index 
 Route::get('/', 'FrontController@index')->name('home');
 
-Route::get('product/{id}', 'FrontController@show')->name('show_product');
+
+// http://127.0.0.1:8000/test
+// Route::get('test', function(){
+//     return "je suis un test";
+// });

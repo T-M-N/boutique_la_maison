@@ -2,9 +2,13 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ProductTableSeeder extends Seeder
 {
+    public function __construct(Faker\Generator $faker){
+        $this->faker = $faker;
+    }
     /**
      * Run the database seeds.
      *
@@ -12,30 +16,48 @@ class ProductTableSeeder extends Seeder
      */
     public function run()
     {
-        App\Category::insert([
+
+         App\Category::insert([
             ['title' => 'homme'],
             ['title' => 'femme'],
         ]);
 
-        factory(App\Product::class, 10)->create()->each(function($product) {
+        Storage::disk('local')->delete(Storage::allFiles());      
 
-            $titles = ['homme', 'femme'];
+       factory(App\Product::class, 6)->create()->each(function($product) {
 
-            $category = App\Category::where('title', $titles[rand(0, 2)])->first();
+            $femmes = Storage::disk('faker_images')->files('femmes');
+            $hommes = Storage::disk('faker_images')->files('hommes');
 
-            $category->category()->associate($category);
+            $genre = $this->faker->randomElement(['homme', 'femme']);
+            
+            if($genre == 'femme'){
+                $file = $this->faker->randomElement($femmes);
+                $file = Storage::disk('faker_images')->get($file);
 
-            $category->save();
+                $link = Str::random(40) . '.jpg';
+                Storage::put('femmes/'.$link, $file);
+                $product->url_image=$link;
+                $product->genre='femme';
+            }
 
-            // Gestion des images on maitrise le nom de l'image pour éviter les problèmes d'injection de script dans les noms 
-            // des fichiers.
-            $link = Str::random(40) . '.jpg';
-            // on récupère les octets d'une image distante avec file_get_content
-            $file = file_get_contents('./productImage/femmes' . rand(1, 10) . '/511/639');
-            $file = file_get_contents('./productImage/hommes' . rand(1, 10) . '/511/639');
+           if($genre == 'homme'){
+                $file = $this->faker->randomElement($hommes);
+                $file = Storage::disk('faker_images')->get($file);
 
-            // On enregistre les octets récupérés dans un fichier on utilise la classe de Laravel Storage
-            Storage::put($link, $file);
-        });
+                $link = Str::random(40) . '.jpg';
+                Storage::put('hommes/'.$link, $file);
+                $product->url_image=$link;
+                $product->genre='homme';
+            }
+           
+            //category_id
+            $categories = ['homme', 'femme'];
+            $category = App\Category::where('title',  $categories[rand(0, 1)])->first();
+            $product->category()->associate($category);
+
+            $product->save();
+       });
+        
     }
 }

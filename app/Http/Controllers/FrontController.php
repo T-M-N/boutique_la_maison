@@ -8,8 +8,11 @@ use App\Category;
 
 class FrontController extends Controller
 {
-    //Permet d'afficher toutes données
+    //Permet d'afficher toutes données dans http://127.0.0.1:8000/
     public function index(){
-        return Product::all();
+        $products = Product::all();
+        return view('front.index', ['products' => $products]);
+        
     }
+
 }
