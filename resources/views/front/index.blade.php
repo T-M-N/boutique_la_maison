@@ -7,10 +7,12 @@ Page des products
 @section('content')
 
 <div class="container galery-product">
+{{ $products->links() }}
   <div class="row">
-    <ul class="d-flex justify-content-between flex-wrap">
+    <div class="col-lg-12 col-md-6 col-sm-1">
+    <ul>
      @forelse($products as $product)
-    <li class="list-inline-item  col-md-3">
+    <li class="list-inline-item">
     @if($product->genre == 'femme')
     <img  src="{{asset('images/femmes/'.$product->url_image)}}" class="femme img-responsive img-thumbnail"/>
          @else
@@ -25,7 +27,7 @@ Page des products
       @empty
       @endforelse
     </ul>
-
+    </div>
 </div>
 </div>
 

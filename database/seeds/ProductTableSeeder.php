@@ -24,7 +24,7 @@ class ProductTableSeeder extends Seeder
 
         Storage::disk('local')->delete(Storage::allFiles());      
 
-       factory(App\Product::class, 6)->create()->each(function($product) {
+       factory(App\Product::class, 25)->create()->each(function($product) {
 
             $femmes = Storage::disk('faker_images')->files('femmes');
             $hommes = Storage::disk('faker_images')->files('hommes');

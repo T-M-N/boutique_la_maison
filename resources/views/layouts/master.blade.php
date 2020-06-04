@@ -30,17 +30,27 @@
 
 /* Galery product home */
 .galery-product ul{
-   margin-top:2.2em; 
+   margin:2.2em auto; 
+   width: 960px;
+}
+
+.galery-product li{
+        max-width: 30%;
 }
 
 h2{
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 img.homme{
     max-width: 84%;
+    margin:auto;
 }
 
+.list-inline-item:not(:last-child) {
+    margin-right: 1.5rem;
+    margin-top: 1rem;
+}
 /* Navigation */
 nav h1{
     font-size: 1.5rem;
@@ -48,6 +58,11 @@ nav h1{
 .tophatbar li{
     margin-right:1em;
     text-transform: capitalize;
+}
+
+/* Pagination */
+.pagination{
+   justify-content: center;
 }
 </style>
 
