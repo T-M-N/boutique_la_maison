@@ -6,11 +6,7 @@ Page des products
 
 @section('content')
 
- <div class="row">
-        <div class="col-md-12">
-        @include('partials.menu')
-        </div>
-    </div>
+
 <div class="container">
 
 <div class="margin-top-1em col-md-8 offset-md-4 d-flex justify-content-around align-items-baseline">
@@ -31,15 +27,15 @@ Page des products
     <li class="list-inline-item">
 
         @if($product->genre == 'femme')
-        <img  src="{{asset('images/femmes/'.$product->url_image)}}" class="femme img-responsive img-thumbnail"/>
+       <a href="{{route('show_product', $product->id)}}"> <img  src="{{asset('images/femmes/'.$product->url_image)}}" class="femme img-responsive img-thumbnail"/></a>
             @else
-        <img  src="{{asset('images/hommes/'.$product->url_image)}}" class="homme img-responsive img-thumbnail"/>
+       <a href="{{route('show_product', $product->id)}}"> <img  src="{{asset('images/hommes/'.$product->url_image)}}" class="homme img-responsive img-thumbnail"/></a>
     
         @endif 
     
-        <h2><a href="{{route('show_product', $product->id)}}">{{ $product->title }}</a></h2>
+        <h2><a class="text-secondary" href="{{route('show_product', $product->id)}}">{{ $product->title }}</a></h2>
         <p>{{'Code produit : '.$product->code}}</p>
-        <p>{{$product->price}} &euro;</p>
+        <p>{{'Prix : '.$product->price}} &euro;</p>
 
     </li>
     

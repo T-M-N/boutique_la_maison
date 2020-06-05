@@ -1,11 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="row">
-        <div class="col-md-12">
-        @include('partials.menu')
-        </div>
-    </div>
+
 <br/>
 <article>
 <div class="col-md-12">    
@@ -13,9 +9,9 @@
   <div class="col-sm-8">
     
     @if($product->genre == 'femme')
-    <img  src="{{asset('images/femmes/'.$product->url_image)}}" class="femme img-responsive img-thumbnail"/>
+    <a href="{{route('show_product', $product->id)}}"><img  src="{{asset('images/femmes/'.$product->url_image)}}" class="femme img-responsive img-thumbnail"/></a>
          @else
-    <img  src="{{asset('images/hommes/'.$product->url_image)}}" class="homme img-responsive img-thumbnail"/>
+    <a href="{{route('show_product', $product->id)}}"><img  src="{{asset('images/hommes/'.$product->url_image)}}" class="homme img-responsive img-thumbnail"/></a>
     @endif
 
 <div class="description col-lg-10">
@@ -27,7 +23,8 @@
   <div class="col-sm-4">
   <h1>{{ $product->title }}</h1>
   <p>{{ 'Référence : '.$product->reference }}</p>
-  <p>{{$product->price}}  &euro;</p>
+  <p>{{'Code produit : '.$product->code}}</p>
+  <p>{{'Prix : '.$product->price}}  &euro;</p>
 
 
 

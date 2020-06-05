@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use App\Product;
 use App\Category;
 
@@ -40,14 +42,12 @@ private $paginate = 10;
     {
         // dd('create');
         $categories = Category::pluck('title', 'id');
-         $genres = Product::pluck('genre');
         $prices = Product::pluck('price', 'id');
         $sizes = Product::pluck('size', 'id'); 
         $codes = Product::pluck('code', 'id'); 
         $references = Product::pluck('reference', 'id'); 
          return view('back.product.create', [
             'categories' => $categories,
-            'genres' => $genres,
             'prices' => $prices,
             'sizes'=>$sizes,
             'codes'=>$codes,
@@ -77,14 +77,23 @@ private $paginate = 10;
         
         $product = Product::create($request->all());
 
-      
-
+        // $product->category()->attach($request->genres);
+ $product->genre = $request->category_id == 1 ? "homme" : "femme";
         if ($request->file('url_image')) {
 
-            $link = $request->file('url_image')->store('');
+            $genre = $product->genre.'s';
+            
+            $link = $request->file('url_image')->store($genre);
+        
+            $link = substr($link, strlen($genre));
+            $product->url_image = $link;
 
-            $product->url_image()->create();
         }
+
+        $product->genre = $request->category_id == 1 ? "homme" : "femme";
+
+        $product->save();
+        return redirect()->route('admin.index');
      
     }
 
@@ -108,7 +117,6 @@ private $paginate = 10;
     public function edit(Product $product)
     {
         $categories = Category::pluck('title', 'id');
-        $genres = Product::pluck('genre');
         $prices = Product::pluck('price', 'id');
         $sizes = Product::pluck('size', 'id'); 
         $codes = Product::pluck('code', 'id'); 
@@ -116,7 +124,6 @@ private $paginate = 10;
          return view('back.product.edit', [
             'product'=>$product,
             'categories' => $categories,
-            'genres'=>$genres,
             'prices' => $prices,
             'sizes'=>$sizes,
             'codes'=>$codes,
@@ -135,16 +142,7 @@ private $paginate = 10;
     {
         $product->update($request->all());
 
-       
-        // $book->authors()->sync($request->authors);
-
-        // if ($request->delete_picture) {
-        //     $this->deletePicture($product);
-        // }
-
-        // if($request->file('url_image')){
-        //     $this->uploadPicture($product, $request);
-        // }
+    
     }
 
     /**
@@ -162,6 +160,6 @@ private $paginate = 10;
 
             $this->deletePicture($product);
             $link = $request->file('url_image')->store('');
-            $product->url_image()->create();
+            $product->url_image->create();
     }
 }

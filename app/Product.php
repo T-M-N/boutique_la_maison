@@ -12,6 +12,7 @@ class Product extends Model
         'price',
         'category_id',
         'size',
+        'genre',
         'reference',
         'status'
     ];
@@ -20,4 +21,5 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
 }

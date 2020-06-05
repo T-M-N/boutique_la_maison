@@ -1,11 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="row">
-        <div class="col-md-12">
-        @include('partials.admin')
-        </div>
-    </div>
+
 <div class="container">
     <div class="row">
        <div class="offset-md-1 col-sm-7"> 
@@ -36,10 +32,10 @@
                 </div>
                 <div class="form">
                     <div class="form-group">
-                        <label for="title">Genre</label>
-                        <select name="genre_id" id="genre">
-                            @foreach($genres as $id=> $name)
-                            <option {{ $product->genre == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
+                        <label for="categorie">Catégorie</label>
+                        <select name="category_id" id="categorie">
+                            @foreach($categories as $id=> $name)
+                            <option {{ old('category_id') == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
                             @endforeach
                         </select>
                     </div>

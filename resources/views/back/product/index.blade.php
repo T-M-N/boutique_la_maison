@@ -2,14 +2,9 @@
 
 @section('content')
 
- <div class="row">
-        <div class="col-md-12">
-        @include('partials.admin')
-        </div>
-    </div>
-<p><a href="{{route('product.create')}}"><button type="button" class="btn btn-primary btn-lg">Ajouter un produit</button></a></p>
+<br/>
 {{$products->links()}}
-
+<br/>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -24,7 +19,7 @@
     <tbody>
         @forelse($products as $product)
         <tr>
-            <td><a href="">{{$product->title}}</a></td>
+            <td><a href="{{route('show_product', $product->id)}}">{{$product->title}}</a></td>
 
             <td>
               {{$product->genre}}
@@ -40,7 +35,7 @@
                 @endif
             </td>
             <td>
-             <a class="btn btn-primary" href="{{route('product.edit')}}">Edit</a></td>
+             <a class="btn btn-secondary" href="{{route('product.edit')}}">Mettre à jour</a></td>
            </td>
              <td>
                 <form class="delete" method="POST" action="">

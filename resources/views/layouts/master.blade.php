@@ -11,19 +11,25 @@
 </head>
 <body>
 <div class="container">
-   
+
+   <div class="row">
+        <div class="col-md-12">
+        @include('partials.menu')
+        </div>
+    </div>
+
     <div class="row">
     <div class="col-md-12">
         @yield('content')
     </div>
     </div>
+
 </div>
 @section('scripts')
 <script src="{{asset('js/app.js')}}"></script>
 @show
 
 <style>
-
 /* Galery product home */
 
 .galery-product ul{
@@ -49,18 +55,33 @@ img.homme{
     margin-top: 1rem;
 }
 
-/* Navigation */
+/* Les navigations */
+.navbar-light .navbar-nav .active>.nav-link{
+    border-bottom:1px solid;
+}
+
 nav h1{
     font-size: 1.5rem;
 }
-.tophatbar li{
+.tophatbar{
+     text-transform: capitalize;
+}
+
+.tophatbar li, .tophatbar-admin li{
     margin-right:1em;
-    text-transform: capitalize;
+}
+
+.tophatbar-admin{
+text-transform: inherit;
 }
 
 /* Pagination */
 .pagination{
    justify-content: center;
+}
+
+.page-link{
+    color:#000000;
 }
 
 .margin-top-1em{

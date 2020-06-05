@@ -1,11 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="row">
-        <div class="col-md-12">
-        @include('partials.admin')
-        </div>
-    </div>
+
 <div class="container form">
 <div class="row"> 
 <div class="offset-md-1 col-sm-7"> 
@@ -13,11 +9,9 @@
     <div class="alert alert-danger">
         <p>Vérifier le formulaire il comporte des erreurs !</p>
     </div>
-    @endif
-    
+    @endif    
         <form action="{{route('admin.store')}}" method="post" enctype="multipart/form-data">
-                @csrf
-              
+                @csrf              
                 <div class="form">
                     <div class="form-group">
                         <label for="title">Titre</label>
@@ -49,6 +43,7 @@
                         </select>
                     </div>
                 </div>
+                
                 <div class="form">
                     <div class="form-group">
                         <label for="size">Taille</label>
@@ -59,7 +54,7 @@
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Ajouter un livre</button> 
+              
         </div>
           <div class="col-sm-4">
                 <div class="form">
@@ -90,12 +85,12 @@
                     <div class="form-group">
                         <h2>Fichier</h2>
                         <label for="file">Image</label>
-                        <input type="file" name="picture">
+                        <input type="file" name="url_image">
                         @if($errors->has('url_image')) <span class="error bg-warning">{{ $errors->first('url_image')}}</span> @endif
                     </div>
                 </div>
             </div>
-                        
+              <button type="submit" class="btn btn-primary">Ajouter un livre</button>             
         </form>
 </div>
 </div>
