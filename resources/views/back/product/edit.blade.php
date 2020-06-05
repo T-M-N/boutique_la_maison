@@ -3,12 +3,12 @@
 @section('content')
 
 <div class="container">
- 
+ <div class="offset-md-1">
  <form action="{{route('admin.update', '$id')}}" method="post" enctype="multipart/form-data">
     {{csrf_field()}}
     <div class="row">
     <input type="hidden" name="_method" value="HEAD"/>
-<div class="offset-md-1 col-sm-7">
+    <div class="col-sm-7">
 
                 <div class="form">
                      <div class="form-group">
@@ -84,7 +84,11 @@
                     </div>
                 </div>
 </div>
+    <div class="form-groupe">
+       <button type="submit" class="btn btn-primary">Mettre à jour</button>
+    </div>
+
 </form>
-</div>
+</div></div>
 </div>
 @endsection

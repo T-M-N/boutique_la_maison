@@ -38,10 +38,10 @@
              <a class="btn btn-secondary" href="{{route('admin.edit', $product->id)}}">Mettre à jour</a></td>
            </td>
              <td>
-                <form class="delete" method="POST" action="">
-                    @method('DELETE')
-                    @csrf
-                    <input class="btn btn-danger" type="submit" value="delete">
+                <form class="delete" method="HEAD" action="{{route('admin.destroy', $product->id)}}">
+                   {{csrf_field()}}
+                   <input type="hidden" name="_methode" value="DELETE"/>
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
                 </form>
             </td>
           

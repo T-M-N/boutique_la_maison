@@ -63,20 +63,8 @@ private $paginate = 10;
      */
     public function store(Request $request)
     {
-        // dd('store');
-        //  $request->validate([
-        //     'title' => 'required',
-        //     'description' => 'required',
-        //     'price' => 'integer',
-        //     'size' => 'integer',
-        //     'category_id' => 'integer',
-        //     'reference' => 'required',            
-        //     'status' => 'in:published,unpublished',
-        //     'picture' => 'image|max:3000'
-        // ]);
         
         $product = Product::create($request->all());
-
        
         $product->genre = $request->category_id == 1 ? "homme" : "femme";
 
@@ -134,20 +122,20 @@ private $paginate = 10;
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-           $request->validate([
-            'title' => 'required',
-            
-        ]);
 
-        // $product->update($request->all());
-
-        // $product->save();
-        // return redirect()->route('/admin');
+        $product = Product::find($id);
+        // $product->title = $request->get('title');
+        // $product->description = $request->get('description');
+        // $product->price = $request->get('price');
+        // $product->size = $request->get('size');
+        // $product->category_id = $request->get('category_id');
+        // $production->$reference = $request->get('reference');
+        // $product->$status = $request->get('status');
 
         $product->update($request->all());
-     
+        $product->save();
 
     }
 
@@ -157,9 +145,11 @@ private $paginate = 10;
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Product $product)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+        return redirect()->route('admin.index');
     }
 
     private function uploadPicture($product, $request):void{

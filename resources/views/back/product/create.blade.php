@@ -2,17 +2,14 @@
 
 @section('content')
 
-<div class="container form">
-<div class="row"> 
-<div class="offset-md-1 col-sm-7"> 
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <p>Vérifier le formulaire il comporte des erreurs !</p>
-    </div>
-    @endif    
-        <form action="{{route('admin.store')}}" method="post" enctype="multipart/form-data">
-                @csrf              
-                <div class="form">
+<div class="container">
+ <div class="offset-md-1">
+  <form action="{{route('admin.store')}}" method="post" enctype="multipart/form-data">
+    {{csrf_field()}}
+    <div class="row">
+ 
+    <div class="col-sm-7">
+ <div class="form">
                     <div class="form-group">
                         <label for="title">Titre</label>
                         <input type="text" name="title" value="{{ old('title') }}" class="form-control" id="title" />
@@ -54,10 +51,9 @@
                         </select>
                     </div>
                 </div>
-              
-        </div>
-          <div class="col-sm-4">
-                <div class="form">
+</div>
+<div class="col-sm-4">
+             <div class="form">
                     <div class="form-group">
                         <h2>Status</h2>
                         <input {{ old('status') === 'published' ? 'checked' : null }} type="radio" name="status" value="published" /> Publier <br />
@@ -89,9 +85,12 @@
                         @if($errors->has('url_image')) <span class="error bg-warning">{{ $errors->first('url_image')}}</span> @endif
                     </div>
                 </div>
-            </div>
-              <button type="submit" class="btn btn-primary">Ajouter un livre</button>             
-        </form>
 </div>
+    <div class="form-groupe">
+       <button type="submit" class="btn btn-primary">Ajouter un produit</button>
+    </div>
+
+</form>
+</div></div>
 </div>
 @endsection
