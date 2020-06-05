@@ -77,8 +77,9 @@ private $paginate = 10;
         
         $product = Product::create($request->all());
 
-        // $product->category()->attach($request->genres);
- $product->genre = $request->category_id == 1 ? "homme" : "femme";
+       
+        $product->genre = $request->category_id == 1 ? "homme" : "femme";
+
         if ($request->file('url_image')) {
 
             $genre = $product->genre.'s';
@@ -114,21 +115,16 @@ private $paginate = 10;
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id, Product $product)
     {
-        $categories = Category::pluck('title', 'id');
-        $prices = Product::pluck('price', 'id');
-        $sizes = Product::pluck('size', 'id'); 
-        $codes = Product::pluck('code', 'id'); 
-        $references = Product::pluck('reference', 'id'); 
-         return view('back.product.edit', [
-            'product'=>$product,
-            'categories' => $categories,
-            'prices' => $prices,
-            'sizes'=>$sizes,
-            'codes'=>$codes,
-            'references'=>$references
-        ]);
+       $categories = Category::pluck('title', 'id');
+        $sizes = Product::pluck('size'); 
+        $codes = Product::pluck('code'); 
+
+        $product = Product::find($id);
+        return view('back.product.edit', compact('product', 'id', "codes", "categories", 'sizes')); 
+
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -138,11 +134,21 @@ private $paginate = 10;
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, Product $product)
     {
-        $product->update($request->all());
+           $request->validate([
+            'title' => 'required',
+            
+        ]);
 
-    
+        // $product->update($request->all());
+
+        // $product->save();
+        // return redirect()->route('/admin');
+
+        $product->update($request->all());
+     
+
     }
 
     /**

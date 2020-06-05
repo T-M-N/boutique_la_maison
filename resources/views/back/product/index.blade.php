@@ -25,7 +25,7 @@
               {{$product->genre}}
             </td>
              <td>
-              {{$product->price}}
+              {{$product->price}} &euro;
             </td>
              <td>
                 @if($product->status == 'published')
@@ -35,7 +35,7 @@
                 @endif
             </td>
             <td>
-             <a class="btn btn-secondary" href="{{route('product.edit')}}">Mettre à jour</a></td>
+             <a class="btn btn-secondary" href="{{route('admin.edit', $product->id)}}">Mettre à jour</a></td>
            </td>
              <td>
                 <form class="delete" method="POST" action="">

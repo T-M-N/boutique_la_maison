@@ -3,26 +3,21 @@
 @section('content')
 
 <div class="container">
+ 
+ <form action="{{route('admin.update', '$id')}}" method="post" enctype="multipart/form-data">
+    {{csrf_field()}}
     <div class="row">
-       <div class="offset-md-1 col-sm-7"> 
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <p>Vérifier le formulaire il comporte des erreurs !</p>
-            </div>
-            @endif
-            {{--
-                route + method => Laravel connecte à la bonne action dans le contrôleur de ressource 
-            --}}
-            <form action="{{route('product.update', $product->id)}}" method="post" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
+    <input type="hidden" name="_method" value="HEAD"/>
+<div class="offset-md-1 col-sm-7">
+
                 <div class="form">
-                    <div class="form-group">
+                     <div class="form-group">
                         <label for="title">Titre</label>
                         <input type="text" name="title" value="{{ $product->title }}" class="form-control" id="title" />
                         @if($errors->has('title')) <span class="error bg-warning">{{ $errors->first('title')}}</span> @endif
                     </div>
                 </div>
+              
                 <div class="form">
                     <div class="form-group">
                         <p><label for="title">Description</label></p>
@@ -30,27 +25,40 @@
                         @if($errors->has('description')) <span class="error bg-warning">{{ $errors->first('description')}}</span> @endif
                     </div>
                 </div>
-                <div class="form">
-                    <div class="form-group">
-                        <label for="categorie">Catégorie</label>
-                        <select name="category_id" id="categorie">
-                            @foreach($categories as $id=> $name)
-                            <option {{ old('category_id') == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+               
 
              <div class="form">
                     <div class="form-group">
                         <label for="price">Prix</label>
-                        <input type="text" name="price" value="{{ old('prices') }}" class="form-control" id="price" />
+                        <input type="text" name="price" value="{{$product->price}}" class="form-control" id="price" />
                         @if($errors->has('prices')) <span class="error bg-warning">{{ $errors->first('prices')}}</span> @endif
                     </div>
                 </div> 
-                 <button type="submit" class="btn btn-primary">Mettre à jour</button>
-     </div>
-          <div class="col-sm-4">
+
+                
+                 <div class="form">
+                    <div class="form-group">
+                        <label for="categorie">Catégorie</label>
+                        <select name="category_id" id="categorie">
+                            @foreach($categories as $id=> $name)
+                            <option {{$product->categories == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+               </div>
+
+                <div class="form">
+                    <div class="form-group">
+                        <label for="size">Taille</label>
+                        <select name="size" id="size">
+                            @foreach($sizes as $id=> $name)
+                            <option {{$product->size == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+</div>
+<div class="col-sm-4">
             <div class="form">
                 <div class="form-group">
                     <h2>Status</h2>
@@ -58,19 +66,25 @@
                     <input {{ $product->status === 'unpublished' ? 'checked' : null }} type="radio" name="status" value="unpublished" /> Dépublier
                 </div>
             </div>
-                 <div class="form">
+               <div class="form">
                     <div class="form-group">
-                        <label for="size">Taille</label>
-                        <select name="sizes" id="size">
-                            @foreach($sizes as $id=> $name)
-                            <option {{ $product->genre == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
+                        <label for="code">Code produit</label>
+                        <select name="code" id="code">
+                            @foreach($codes as $id=> $name)
+                            <option {{ $product->code == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-           
-     </div>
-    </div>
-    </form>
+                <div class="form">
+                    <div class="form-group">
+                        <label for="reference">Référence</label>
+                        <input type="text" name="reference" value="{{ $product->reference }}" class="form-control" id="reference" />
+                        @if($errors->has('references')) <span class="error bg-warning">{{ $errors->first('references')}}</span> @endif
+                    </div>
+                </div>
+</div>
+</form>
+</div>
 </div>
 @endsection

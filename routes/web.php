@@ -22,12 +22,12 @@ Route::get('categorie/{id}', 'FrontController@showCategory')->name('show_product
 
 Route::get('solde', 'FrontController@showSolde')->name('show_product_solde');
 
-Route::get('admin/ajouter-produit', 'ProductController@create')->name('product.create');
-Route::get('admin/edition-produit', 'ProductController@edit')->name('product.edit');
-Route::get('admin/mise-a-jour', 'ProductController@update')->name('product.update');
+
 
 Route::resource('admin', 'ProductController');
-
-Auth::routes();
+Route::get('/admin/edit/{id}', 'ProductController@edit')->name('admin.edit');
+Route::get('/admin/update/{id}', 'ProductController@update')->name('admin.update');
+Route::get('/admin.destroy/{id}', 'ProductController@destroy')->name('admin.destroy');
+// Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
