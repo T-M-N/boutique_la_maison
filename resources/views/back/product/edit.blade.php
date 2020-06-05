@@ -4,10 +4,10 @@
 
 <div class="container">
  <div class="offset-md-1">
- <form action="{{route('admin.update', '$id')}}" method="post" enctype="multipart/form-data">
-    {{csrf_field()}}
+ <form action="{{route('admin.update', $product->id)}}" method="HEAD" enctype="multipart/form-data">
+   {{csrf_field()}}
     <div class="row">
-    <input type="hidden" name="_method" value="HEAD"/>
+    <input type="hidden" name="_method" value="UPDATE"/>
     <div class="col-sm-7">
 
                 <div class="form">
@@ -46,7 +46,6 @@
                         </select>
                     </div>
                </div>
-
                 <div class="form">
                     <div class="form-group">
                         <label for="size">Taille</label>
@@ -56,7 +55,7 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
+                </div>      
 </div>
 <div class="col-sm-4">
             <div class="form">

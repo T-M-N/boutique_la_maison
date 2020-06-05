@@ -28,7 +28,6 @@ private $paginate = 10;
 
      public function index()
     {
-    //    return "Admin Book";
             $products = Product::paginate($this->paginate);
             return view('back.product.index', ['products' => $products]);
     }
@@ -40,7 +39,6 @@ private $paginate = 10;
      */
     public function create()
     {
-        // dd('create');
         $categories = Category::pluck('title', 'id');
         $prices = Product::pluck('price', 'id');
         $sizes = Product::pluck('size', 'id'); 
@@ -64,14 +62,12 @@ private $paginate = 10;
     public function store(Request $request)
     {
         
-        $product = Product::create($request->all());
-       
+        $product = Product::create($request->all());       
         $product->genre = $request->category_id == 1 ? "homme" : "femme";
 
         if ($request->file('url_image')) {
 
-            $genre = $product->genre.'s';
-            
+            $genre = $product->genre.'s';            
             $link = $request->file('url_image')->store($genre);
         
             $link = substr($link, strlen($genre));
@@ -106,8 +102,8 @@ private $paginate = 10;
     public function edit($id, Product $product)
     {
        $categories = Category::pluck('title', 'id');
-        $sizes = Product::pluck('size'); 
-        $codes = Product::pluck('code'); 
+        $sizes = Product::pluck('size', 'id'); 
+        $codes = Product::pluck('code', 'id'); 
 
         $product = Product::find($id);
         return view('back.product.edit', compact('product', 'id', "codes", "categories", 'sizes')); 
@@ -126,15 +122,9 @@ private $paginate = 10;
     {
 
         $product = Product::find($id);
-        // $product->title = $request->get('title');
-        // $product->description = $request->get('description');
-        // $product->price = $request->get('price');
-        // $product->size = $request->get('size');
-        // $product->category_id = $request->get('category_id');
-        // $production->$reference = $request->get('reference');
-        // $product->$status = $request->get('status');
 
         $product->update($request->all());
+        return redirect()->route('admin.index');
         $product->save();
 
     }

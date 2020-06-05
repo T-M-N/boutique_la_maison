@@ -30,6 +30,10 @@
 @show
 
 <style>
+/* Global */
+a{
+    color:#212529;
+}
 /* Galery product home */
 
 .galery-product ul{
