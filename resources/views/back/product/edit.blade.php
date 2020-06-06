@@ -9,7 +9,6 @@
     <div class="row">
     <input type="hidden" name="_method" value="UPDATE"/>
     <div class="col-sm-7">
-
                 <div class="form">
                      <div class="form-group">
                         <label for="title">Titre</label>
@@ -41,7 +40,7 @@
                         <label for="categorie">Catégorie</label>
                         <select name="category_id" id="categorie">
                             @foreach($categories as $id=> $name)
-                            <option {{$product->categories == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
+                            <option {{$product->categories == $id ? 'selected' : null }}  value="{{$id}}">{{$name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -49,13 +48,31 @@
                 <div class="form">
                     <div class="form-group">
                         <label for="size">Taille</label>
-                        <select name="size" id="size">
+                        <select name="sizes" id="size">
                             @foreach($sizes as $id=> $name)
-                            <option {{$product->size == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
+                            <option {{ $product->sizes == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
                             @endforeach
                         </select>
                     </div>
-                </div>      
+                </div>  
+                  <div class="form">
+                        <div class="form-group">        
+                         @if($product->genre == 'femme')
+                        <img  src="{{asset('images/femmes/'.$product->url_image)}}" class="femme img-responsive img-thumbnail"/>
+                            @else
+                        <img  src="{{asset('images/hommes/'.$product->url_image)}}" class="homme img-responsive img-thumbnail"/>
+                    
+                        @endif 
+                    </div>
+                </div>
+                <div class="form">
+                    <div class="form-group">
+                        <h2>Fichier</h2>
+                        <label for="file">Image</label>
+                        <input type="file" name="url_image">
+                        @if($errors->has('url_images')) <span class="error bg-warning">{{ $product->url_image}}</span> @endif
+                    </div>
+                </div>    
 </div>
 <div class="col-sm-4">
             <div class="form">
@@ -70,7 +87,7 @@
                         <label for="code">Code produit</label>
                         <select name="code" id="code">
                             @foreach($codes as $id=> $name)
-                            <option {{ $product->code == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
+                            <option {{ $product->codes == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -82,6 +99,7 @@
                         @if($errors->has('references')) <span class="error bg-warning">{{ $errors->first('references')}}</span> @endif
                     </div>
                 </div>
+      
 </div>
     <div class="form-groupe">
        <button type="submit" class="btn btn-primary">Mettre à jour</button>
@@ -91,3 +109,10 @@
 </div></div>
 </div>
 @endsection
+
+
+<style>
+.img-thumbnail {
+    max-width: 30% !important;
+}
+</style>

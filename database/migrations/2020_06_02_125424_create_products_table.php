@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->decimal('price', 8, 2);
             $table->enum('size', ['46', '48', '50', '52']);
             $table->mediumText('url_image')->nullable();
-            $table->enum('code', ['solde', 'new'])->default('new');
+            $table->enum('code', ['new', 'solde'])->default('new');
             $table->string('reference', 100);
             $table->enum('status', ['published', 'unpublished', 'draft'])->default('unpublished');
             $table->enum('genre', ['homme', 'femme'])->nullable();
