@@ -18,15 +18,18 @@
         </div>
         <div class="col-sm-4">
             <h1>{{ $product->title }}</h1>
+            <br/>
             <p>{{ 'Référence : '.$product->reference }}</p>
             <p>{{'Code produit : '.$product->code}}</p>
             <p>{{'Prix : '.$product->price}}  &euro;</p>
-
-            <select class="form-control" name="item_id">
+            <form>
+            <label for="isze">Taille :</label>
+            <select id="size" class="form-control">
               @foreach($size as $item)
                 <option value="{{$item->id}}" @if($area->id==$item->id) selected @endif>{{$item->size}}</option>
               @endforeach
             </select>
+            </form>
         </div>
       </div>
   </div>

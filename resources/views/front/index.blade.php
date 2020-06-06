@@ -19,6 +19,7 @@ Page des products
                   @if($product->genre == 'femme')
                     <a href="{{route('show_product', $product->id)}}"><img  src="{{asset('images/femmes/'.$product->url_image)}}" class="femme img-responsive img-thumbnail"/></a>
                         @else
+                    
                     <a href="{{route('show_product', $product->id)}}"><img  src="{{asset('images/hommes/'.$product->url_image)}}" class="homme img-responsive img-thumbnail"/></a>
                   @endif 
                     <h2><a href="{{route('show_product', $product->id)}}">{{ $product->title }}</a></h2>

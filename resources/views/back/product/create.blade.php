@@ -63,7 +63,7 @@
                             <label for="code">Code produit</label>
                             <select name="code" id="code">
                                 @foreach($codes as $id=> $name)
-                                <option {{ old('codes') == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
+                                <option {{ old('code') == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
                                 @endforeach
                             </select>
                         </div>

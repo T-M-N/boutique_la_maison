@@ -56,18 +56,17 @@
                             <img  src="{{asset('images/femmes/'.$product->url_image)}}" class="femme img-responsive img-thumbnail"/>
                                 @else
                             <img  src="{{asset('images/hommes/'.$product->url_image)}}" class="homme img-responsive img-thumbnail"/>
-                        
                             @endif 
                         </div>
                     </div>
-                    <div class="form">
+                     <div class="form">
                         <div class="form-group">
                             <h2>Fichier</h2>
                             <label for="file">Image</label>
                             <input type="file" name="url_image">
-                            @if($errors->has('url_images')) <span class="error bg-warning">{{ $product->url_image}}</span> @endif
+                            @if($errors->has('url_image')) <span class="error bg-warning">{{ $errors->first('url_image')}}</span> @endif
                         </div>
-                    </div>    
+                    </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form">
@@ -82,7 +81,7 @@
                             <label for="code">Code produit</label>
                             <select name="code" id="code">
                                 @foreach($codes as $id=> $name)
-                                <option {{ $product->code == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
+                                <option {{ $product->codes == $id ? 'selected' : null }} value="{{$id}}">{{$name}}</option>
                                 @endforeach
                             </select>
                         </div>
