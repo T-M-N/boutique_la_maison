@@ -22,12 +22,8 @@ Route::get('categorie/{id}', 'FrontController@showCategory')->name('show_product
 
 Route::get('solde', 'FrontController@showSolde')->name('show_product_solde');
 
-
-
 Route::resource('admin', 'ProductController');
 Route::get('/admin/edit/{id}', 'ProductController@edit')->name('admin.edit');
 Route::get('/admin/update/{id}', 'ProductController@update')->name('admin.update');
 Route::get('/admin.destroy/{id}', 'ProductController@destroy')->name('admin.destroy');
-// Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');

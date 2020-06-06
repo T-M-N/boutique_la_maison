@@ -144,12 +144,11 @@ private $paginate = 10;
         return redirect()->route('admin.index');
     }
 
-    private function uploadPicture($product, $request):void{
-            
-            $this->deletePicture($product);
-            $product->genre = $request->category_id == 1 ? "homme" : "femme";
-            $genre = $product->genre.'s';
-            $link = $request->file('url_image')->store($genre);
-            $product->$link->create();
+    private function uploadPicture($product, $request):void{            
+        $this->deletePicture($product);
+        $product->genre = $request->category_id == 1 ? "homme" : "femme";
+        $genre = $product->genre.'s';
+        $link = $request->file('url_image')->store($genre);
+        $product->$link->create();
     }
 }

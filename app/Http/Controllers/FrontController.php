@@ -19,7 +19,6 @@ class FrontController extends Controller
     private $paginate = 6;
     private $paginateAuthor = 2;
 
-    //Permet d'afficher toutes données dans http://127.0.0.1:8000/
     public function index(){
         $products = Product::with('category')->paginate($this->paginate);
         return view('front.index', ['products' => $products]);        
