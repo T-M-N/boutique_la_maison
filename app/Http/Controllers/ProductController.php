@@ -106,7 +106,7 @@ private $paginate = 10;
         $sizes = Product::pluck('size', 'id'); 
         $codes = Product::pluck('code', 'id'); 
        
-        return view('back.product.edit', compact('product', 'id', 'categories', 'sizes',  'codes' )); 
+        return view('back.product.edit', compact('product', 'id', 'categories', 'sizes', 'codes')); 
 
         return redirect()->route('admin.index');
     }
@@ -125,6 +125,7 @@ private $paginate = 10;
         $sizes = Product::pluck('size', 'id'); 
         $codes = Product::pluck('code', 'id');
         
+
         $product->update($request->all());
         return redirect()->route('admin.index');
         $product->save();
@@ -144,11 +145,13 @@ private $paginate = 10;
         return redirect()->route('admin.index');
     }
 
-    private function uploadPicture($product, $request):void{            
-        $this->deletePicture($product);
-        $product->genre = $request->category_id == 1 ? "homme" : "femme";
-        $genre = $product->genre.'s';
-        $link = $request->file('url_image')->store($genre);
-        $product->$link->create();
+    private function uploadPicture($product, $request):void{
+
+            $this->deletePicture($product);
+            $product->genre = $request->category_id == 1 ? "homme" : "femme";
+            $genre = $product->genre.'s';
+            $link = $request->file('url_image')->store($genre);
+            $product->$link->create();
+            
     }
 }
