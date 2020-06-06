@@ -61,7 +61,13 @@ private $paginate = 10;
      */
     public function store(Request $request)
     {
-        
+        //  $request->validate([
+        //     'title' => 'required',
+        //     'description' => 'required',
+        //     'url_image' => 'required',
+        //     'price' =>'required'
+        // ]);
+
         $product = Product::create($request->all());       
         $product->genre = $request->category_id == 1 ? "homme" : "femme";
 
