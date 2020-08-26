@@ -24,7 +24,6 @@ class FrontController extends Controller
         return view('front.index', ['products' => $products]);        
     }
 
-
      public function showSolde(){
         $products = Product::with('category')->where('code', 'solde')->paginate($this->paginate);
         return view('front.solde', ['products' => $products]); 
@@ -42,6 +41,5 @@ class FrontController extends Controller
         $area = Product::with('category')->find($id); 
         return view('front.show', ['product' => $product, 'area' => $area], compact('size')); 
     }
-
 
 }

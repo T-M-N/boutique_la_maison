@@ -1,8 +1,3 @@
-@extends('layouts.master')
-
-@section('title')
-Page des products
-@endsection
 
 @section('content')
 <div class="container">
